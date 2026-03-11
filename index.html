@@ -16,6 +16,7 @@
         .input-box:focus { border-color: #3b82f6; background-color: #f8fafc; }
         .unit { margin-left: 6px; font-size: 13px; color: #94a3b8; width: 15px; }
         .add-btn { background-color: #1e293b; color: white; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 700; }
+        .section-split { border-top: 1px dashed #e2e8f0; margin-top: 10px; padding-top: 10px; }
     </style>
 </head>
 <body class="p-4">
@@ -34,53 +35,37 @@
             </div>
         </div>
 
-        <div class="card">
-            <div class="brand-title text-blue-600">가. 무학</div>
+        <div class="card"><div class="brand-title text-blue-600">가. 무학</div>
             <div class="input-row"><span class="label-text">좋은데이:</span><input type="number" id="t_good" class="input-box" value="0"><span class="unit">t</span></div>
             <div class="input-row"><span class="label-text">부산갈매기:</span><input type="number" id="t_seagull" class="input-box border-blue-200" value="0"><span class="unit">t</span></div>
             <div class="input-row"><span class="label-text">톡시리즈:</span><input type="number" id="t_tok" class="input-box" value="0"><span class="unit">t</span></div>
             <div class="input-row mb-0"><span class="label-text">기타:</span><input type="number" id="t_muhak_etc" class="input-box" value="0"><span class="unit">t</span></div>
         </div>
-
-        <div class="card">
-            <div class="brand-title text-red-500">나. 하이트진로</div>
+        <div class="card"><div class="brand-title text-red-500">나. 하이트진로</div>
             <div class="input-row"><span class="label-text">참이슬:</span><input type="number" id="t_isul" class="input-box" value="0"><span class="unit">t</span></div>
             <div class="input-row"><span class="label-text">진로:</span><input type="number" id="t_jinro" class="input-box" value="0"><span class="unit">t</span></div>
             <div class="input-row mb-0"><span class="label-text">기타:</span><input type="number" id="t_hite_etc" class="input-box" value="0"><span class="unit">t</span></div>
         </div>
-
-        <div class="card">
-            <div class="brand-title text-emerald-600">다. 대선주조</div>
+        <div class="card"><div class="brand-title text-emerald-600">다. 대선주조</div>
             <div class="input-row"><span class="label-text">대선(C1포함):</span><input type="number" id="t_daesun" class="input-box" value="0"><span class="unit">t</span></div>
             <div class="input-row"><span class="label-text">부산:</span><input type="number" id="t_busan" class="input-box" value="0"><span class="unit">t</span></div>
             <div class="input-row mb-0"><span class="label-text">기타:</span><input type="number" id="t_ds_etc" class="input-box" value="0"><span class="unit">t</span></div>
         </div>
-
-        <div class="card">
-            <div class="brand-title text-orange-500">라. 롯데</div>
+        <div class="card"><div class="brand-title text-orange-500">라. 롯데</div>
             <div class="input-row"><span class="label-text">새로(살구포함):</span><input type="number" id="t_saero" class="input-box" value="0"><span class="unit">t</span></div>
             <div class="input-row"><span class="label-text">청하(별빛포함):</span><input type="number" id="t_chungha" class="input-box" value="0"><span class="unit">t</span></div>
             <div class="input-row mb-0"><span class="label-text">기타:</span><input type="number" id="t_lotte_etc" class="input-box" value="0"><span class="unit">t</span></div>
         </div>
-
-        <div class="card">
-            <div class="brand-title text-slate-500">마. 기타 주류회사</div>
+        <div class="card"><div class="brand-title text-slate-500">마. 기타 주류회사</div>
             <div class="input-row mb-0"><span class="label-text">합계:</span><input type="number" id="t_etc_total" class="input-box" value="0"><span class="unit">t</span></div>
         </div>
 
         <div class="card">
             <div class="flex justify-between items-center mb-4 text-blue-600 font-bold italic">
-                <span>2. 전환 및 추가주문</span>
+                <span>2. 판촉 실정 (전환 & 추가)</span>
                 <button onclick="addRow()" class="add-btn">인원 추가 +</button>
             </div>
-            <div class="grid grid-cols-10 gap-1 text-[10px] font-bold text-center text-gray-400 mb-2 italic">
-                <div class="col-span-3 text-left pl-1 text-gray-700">이름</div>
-                <div class="col-span-2">좋은데이</div>
-                <div class="col-span-2">부산갈매기</div>
-                <div class="col-span-2">톡톡</div>
-                <div class="col-span-1"></div>
-            </div>
-            <div id="userList" class="space-y-2"></div>
+            <div id="userList" class="space-y-4"></div>
         </div>
     </div>
 
@@ -96,17 +81,31 @@
             uIdx++;
             const div = document.createElement('div');
             div.id = `u_${uIdx}`;
-            div.className = "grid grid-cols-10 gap-1 items-center pb-2 border-b border-gray-50 last:border-0";
+            div.className = "p-3 border border-slate-100 rounded-lg bg-slate-50 relative";
             div.innerHTML = `
-                <div class="col-span-3"><input type="text" placeholder="이름" class="u-name input-box text-left bg-blue-50 border-none font-bold p-2 w-full"></div>
-                <div class="col-span-2"><input type="number" placeholder="0" class="u-v1 input-box p-2 w-full"></div>
-                <div class="col-span-2"><input type="number" placeholder="0" class="u-v2 input-box p-2 w-full border-blue-200"></div>
-                <div class="col-span-2"><input type="number" placeholder="0" class="u-v3 input-box p-2 w-full"></div>
-                <div class="col-span-1 text-right"><button onclick="document.getElementById('u_${uIdx}').remove()" class="text-red-400 font-bold">✕</button></div>
+                <button onclick="document.getElementById('u_${uIdx}').remove()" class="absolute top-2 right-2 text-red-400 font-bold text-xs">✕ 삭제</button>
+                <div class="mb-2"><input type="text" placeholder="이름 입력" class="u-name input-box text-left bg-white font-bold p-2 w-2/3"></div>
+                
+                <div class="grid grid-cols-10 gap-1 items-center mb-1">
+                    <div class="col-span-2 text-[10px] font-bold text-blue-500">전환</div>
+                    <div class="col-span-2"><input type="number" placeholder="좋" class="u-v1 input-box p-1 text-xs"></div>
+                    <div class="col-span-1 text-[9px] text-gray-400">/</div>
+                    <div class="col-span-2"><input type="number" placeholder="갈" class="u-v2 input-box p-1 text-xs"></div>
+                    <div class="col-span-1 text-[9px] text-gray-400">/</div>
+                    <div class="col-span-2"><input type="number" placeholder="톡" class="u-v3 input-box p-1 text-xs"></div>
+                </div>
+
+                <div class="grid grid-cols-10 gap-1 items-center">
+                    <div class="col-span-2 text-[10px] font-bold text-orange-500">추가</div>
+                    <div class="col-span-2"><input type="number" placeholder="좋" class="u-a1 input-box p-1 text-xs"></div>
+                    <div class="col-span-1 text-[9px] text-gray-400">/</div>
+                    <div class="col-span-2"><input type="number" placeholder="갈" class="u-a2 input-box p-1 text-xs"></div>
+                    <div class="col-span-1 text-[9px] text-gray-400">/</div>
+                    <div class="col-span-2"><input type="number" placeholder="톡" class="u-a3 input-box p-1 text-xs"></div>
+                </div>
             `;
             document.getElementById('userList').appendChild(div);
         }
-        // 초기 인원 2명 생성
         addRow(); addRow();
 
         function getV(id) { return Number(document.getElementById(id)?.value) || 0; }
@@ -117,6 +116,7 @@
             const market = document.getElementById('marketName').value || "상권미정";
             const visit = getV('visitCount');
             
+            // 점유비 계산
             const mu1=getV('t_good'), mu2=getV('t_seagull'), mu3=getV('t_tok'), mu4=getV('t_muhak_etc');
             const muhakT = mu1 + mu2 + mu3 + mu4;
             const hiteT = getV('t_isul') + getV('t_jinro') + getV('t_hite_etc');
@@ -125,14 +125,24 @@
             const etcT = getV('t_etc_total');
             const totalT = muhakT + hiteT + dsT + lotteT + etcT;
 
-            let s1=0, s2=0, s3=0, details="";
+            // 판촉 실정 계산
+            let sv1=0, sv2=0, sv3=0; // 전환 합계
+            let sa1=0, sa2=0, sa3=0; // 추가 합계
+            let details = "";
+            
             document.querySelectorAll('#userList > div').forEach(r => {
                 const n = r.querySelector('.u-name').value || "익명";
                 const v1 = Number(r.querySelector('.u-v1').value) || 0;
                 const v2 = Number(r.querySelector('.u-v2').value) || 0;
                 const v3 = Number(r.querySelector('.u-v3').value) || 0;
-                s1+=v1; s2+=v2; s3+=v3;
-                details += `${n}: ${v1}t / ${v2}t / ${v3}t\n`;
+                const a1 = Number(r.querySelector('.u-a1').value) || 0;
+                const a2 = Number(r.querySelector('.u-a2').value) || 0;
+                const a3 = Number(r.querySelector('.u-a3').value) || 0;
+                
+                sv1+=v1; sv2+=v2; sv3+=v3;
+                sa1+=a1; sa2+=a2; sa3+=a3;
+                
+                details += `${n}\n - 전환: ${v1} / ${v2} / ${v3}\n - 추가: ${a1} / ${a2} / ${a3}\n`;
             });
 
             const reportText = `< ${date} ${market} 상권 보고 >
@@ -142,21 +152,24 @@
 - 총 테이블 수: ${totalT}T
 
 가. 무학: ${muhakT}T (${getP(muhakT, totalT)}%)
-- 좋은데이: ${mu1}T / 갈매기: ${mu2}T / 톡톡: ${mu3}T / 기타: ${mu4}T
+- 좋은데이: ${mu1}T / 갈매기: ${mu3}T / 톡톡: ${mu2}T / 기타: ${mu4}T
 
 나. 하이트진로: ${hiteT}T (${getP(hiteT, totalT)}%)
 - 참이슬: ${getV('t_isul')}T / 진로: ${getV('t_jinro')}T / 기타: ${getV('t_hite_etc')}T
 
 다. 대선주조: ${dsT}T (${getP(dsT, totalT)}%)
-- 대선(C1): ${getV('t_daesun')}T / 부산: ${getV('t_busan')}T / 기타: ${getV('t_ds_etc')}T
+- 대선: ${getV('t_daesun')}T / 부산: ${getV('t_busan')}T / 기타: ${getV('t_ds_etc')}T
 
 라. 롯데: ${lotteT}T (${getP(lotteT, totalT)}%)
 - 새로: ${getV('t_saero')}T / 청하: ${getV('t_chungha')}T / 기타: ${getV('t_lotte_etc')}T
 
 마. 기타 주류회사: ${etcT}T (${getP(etcT, totalT)}%)
 
-2. 근무자 판촉 실정
-- 총 전환: ${s1}t(좋은데이) / ${s2}t(부산갈매기) / ${s3}t(톡톡)
+2. 근무자 판촉 실정 (좋/갈/톡)
+- 총 전환: ${sv1} / ${sv2} / ${sv3}
+- 총 추가: ${sa1} / ${sa2} / ${sa3}
+
+[상세 내역]
 ${details}
 3. 특이사항
 - 없음`;
