@@ -8,10 +8,12 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;800&display=swap');
-        body { font-family: 'Pretendard', sans-serif; background-color: #f8fafc; }
-        .input-box { border: 1px solid #e2e8f0; border-radius: 6px; padding: 6px; text-align: center; width: 100%; font-size: 13px; }
-        .card { background: white; border-radius: 12px; padding: 15px; shadow: sm; }
-        .grid-header { font-size: 11px; color: #64748b; text-align: center; font-weight: bold; }
+        body { font-family: 'Pretendard', sans-serif; background-color: #f8fafc; color: #334155; }
+        .input-box { border: 1px solid #e2e8f0; border-radius: 6px; padding: 6px; text-align: center; width: 100%; font-size: 13px; outline: none; transition: border 0.2s; }
+        .input-box:focus { border-color: #3b82f6; }
+        .card { background: white; border-radius: 12px; padding: 15px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .brand-title { font-size: 13px; font-weight: 800; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+        .label-text { font-size: 11px; color: #64748b; margin-left: 2px; margin-bottom: 2px; display: block; }
     </style>
 </head>
 <body class="pb-32 px-4 pt-4">
@@ -22,34 +24,63 @@
             <input type="text" id="marketName" class="input-box bg-gray-50 border-none font-bold" placeholder="📍 상권명 입력">
         </div>
 
-        <div class="card space-y-4">
-            <h2 class="font-bold text-blue-600 border-b pb-2 italic">1. 점유비 입력 (T)</h2>
-            <div class="grid grid-cols-2 gap-3">
-                <div><label class="text-[10px] ml-1">좋은데이</label><input type="number" id="t_good" class="input-box"></div>
-                <div><label class="text-[10px] ml-1">부산갈매기</label><input type="number" id="t_seagull" class="input-box border-blue-300"></div>
-                <div><label class="text-[10px] ml-1">톡시리즈</label><input type="number" id="t_tok" class="input-box"></div>
-                <div><label class="text-[10px] ml-1">기타(무학)</label><input type="number" id="t_muhak_etc" class="input-box"></div>
+        <div class="space-y-4">
+            <h2 class="font-bold text-lg px-1 italic text-slate-700">1. 점유비 입력 (T)</h2>
+            
+            <div class="card border-l-4 border-blue-500">
+                <div class="brand-title text-blue-600">가. 무학</div>
+                <div class="grid grid-cols-2 gap-2">
+                    <div><span class="label-text">좋은데이</span><input type="number" id="t_good" class="input-box"></div>
+                    <div><span class="label-text">톡시리즈</span><input type="number" id="t_tok" class="input-box"></div>
+                    <div><span class="label-text">부산갈매기</span><input type="number" id="t_seagull" class="input-box border-blue-200"></div>
+                    <div><span class="label-text">기타</span><input type="number" id="t_muhak_etc" class="input-box text-xs"></div>
+                </div>
             </div>
-            <div class="grid grid-cols-3 gap-2 pt-2 border-t">
-                <div><label class="text-[10px] ml-1 text-red-400 font-bold">참이슬</label><input type="number" id="t_isul" class="input-box"></div>
-                <div><label class="text-[10px] ml-1 text-red-400 font-bold">진로</label><input type="number" id="t_jinro" class="input-box"></div>
-                <div><label class="text-[10px] ml-1 text-green-500 font-bold">대선/부산</label><input type="number" id="t_daesun" class="input-box"></div>
-                <div><label class="text-[10px] ml-1 text-orange-400 font-bold">새로</label><input type="number" id="t_saero" class="input-box"></div>
-                <div><label class="text-[10px] ml-1 text-orange-400 font-bold">청하</label><input type="number" id="t_chungha" class="input-box"></div>
+
+            <div class="card border-l-4 border-red-500">
+                <div class="brand-title text-red-600">나. 하이트진로</div>
+                <div class="grid grid-cols-3 gap-2">
+                    <div><span class="label-text">참이슬</span><input type="number" id="t_isul" class="input-box"></div>
+                    <div><span class="label-text">진로</span><input type="number" id="t_jinro" class="input-box"></div>
+                    <div><span class="label-text">기타</span><input type="number" id="t_hite_etc" class="input-box text-xs"></div>
+                </div>
+            </div>
+
+            <div class="card border-l-4 border-emerald-500">
+                <div class="brand-title text-emerald-600">다. 대선주조</div>
+                <div class="grid grid-cols-3 gap-2">
+                    <div><span class="label-text">대선(C1포함)</span><input type="number" id="t_daesun" class="input-box text-xs"></div>
+                    <div><span class="label-text">부산</span><input type="number" id="t_busan" class="input-box"></div>
+                    <div><span class="label-text">기타</span><input type="number" id="t_ds_etc" class="input-box text-xs"></div>
+                </div>
+            </div>
+
+            <div class="card border-l-4 border-orange-500">
+                <div class="brand-title text-orange-600">라. 롯데</div>
+                <div class="grid grid-cols-3 gap-2">
+                    <div><span class="label-text">새로(살구포함)</span><input type="number" id="t_saero" class="input-box text-xs"></div>
+                    <div><span class="label-text">청하(별빛포함)</span><input type="number" id="t_chungha" class="input-box text-xs"></div>
+                    <div><span class="label-text">기타</span><input type="number" id="t_lotte_etc" class="input-box text-xs"></div>
+                </div>
+            </div>
+
+            <div class="card border-l-4 border-slate-400">
+                <div class="brand-title text-slate-500">마. 기타 주류회사</div>
+                <div><span class="label-text">기타 제품 총합</span><input type="number" id="t_other_company" class="input-box" placeholder="0"></div>
             </div>
         </div>
 
         <div class="card space-y-4">
             <div class="flex justify-between items-end">
-                <h2 class="font-bold text-gray-800 italic">2. 전환 및 추가주문</h2>
-                <button onclick="addUserRow()" class="bg-black text-white text-[11px] px-3 py-1.5 rounded-md font-bold transition-all active:scale-95">인원 추가하기</button>
+                <h2 class="font-bold text-gray-800 italic">2. 판촉 실정</h2>
+                <button onclick="addUserRow()" class="bg-slate-800 text-white text-[11px] px-3 py-1.5 rounded-md font-bold active:scale-95 transition-all">+ 인원 추가</button>
             </div>
 
             <div class="grid grid-cols-10 gap-1 px-1">
-                <div class="col-span-3 grid-header">이름</div>
-                <div class="col-span-2 grid-header">좋은데이</div>
-                <div class="col-span-2 grid-header">갈매기</div>
-                <div class="col-span-2 grid-header">톡톡</div>
+                <div class="col-span-3 text-[11px] font-bold text-center">이름</div>
+                <div class="col-span-2 text-[11px] font-bold text-center">좋은데이</div>
+                <div class="col-span-2 text-[11px] font-bold text-center">갈매기</div>
+                <div class="col-span-2 text-[11px] font-bold text-center">톡톡</div>
                 <div class="col-span-1"></div>
             </div>
             
@@ -71,7 +102,6 @@
 
     <script>
         let rowIdx = 0;
-
         function addUserRow() {
             rowIdx++;
             const container = document.getElementById('userRowContainer');
@@ -87,11 +117,8 @@
             `;
             container.appendChild(row);
         }
-
         function removeRow(id) { document.getElementById(`row_${id}`).remove(); }
-
-        // 기본 2줄 생성
-        addUserRow(); addUserRow();
+        addUserRow(); addUserRow(); // 초기 2인
 
         function getV(id) { return Number(document.getElementById(id)?.value) || 0; }
         function getP(v, total) { return total === 0 ? "0.0" : ((v/total)*100).toFixed(1); }
@@ -101,48 +128,60 @@
             const market = document.getElementById('marketName').value || "000";
             const memo = document.getElementById('memo').value || "없음";
             
-            // 1. 점유비 계산
-            const mu1 = getV('t_good'), mu2 = getV('t_seagull'), mu3 = getV('t_tok'), mu4 = getV('t_muhak_etc');
-            const muhakTotal = mu1 + mu2 + mu3 + mu4;
-            const hiteTotal = getV('t_isul') + getV('t_jinro');
-            const dsTotal = getV('t_daesun');
-            const lotteTotal = getV('t_saero') + getV('t_chungha');
-            const grandTotal = muhakTotal + hiteTotal + dsTotal + lotteTotal;
+            // 점유비 계산
+            const mu1 = getV('t_good'), mu2 = getV('t_tok'), mu3 = getV('t_seagull'), mu4 = getV('t_muhak_etc');
+            const muhakT = mu1 + mu2 + mu3 + mu4;
+            const hiteT = getV('t_isul') + getV('t_jinro') + getV('t_hite_etc');
+            const dsT = getV('t_daesun') + getV('t_busan') + getV('t_ds_etc');
+            const lotteT = getV('t_saero') + getV('t_chungha') + getV('t_lotte_etc');
+            const etcT = getV('t_other_company');
+            const totalT = muhakT + hiteT + dsT + lotteT + etcT;
 
-            // 2. 판촉 실정 계산
-            let sum1 = 0, sum2 = 0, sum3 = 0;
-            let detailList = "";
-            const rows = document.querySelectorAll('#userRowContainer > div');
-            rows.forEach(r => {
-                const name = r.querySelector('.u-name').value || "익명";
+            // 판촉 실정 계산
+            let sum1 = 0, sum2 = 0, sum3 = 0, detail = "";
+            document.querySelectorAll('#userRowContainer > div').forEach(r => {
+                const n = r.querySelector('.u-name').value || "미입력";
                 const v1 = Number(r.querySelector('.u-v1').value) || 0;
                 const v2 = Number(r.querySelector('.u-v2').value) || 0;
                 const v3 = Number(r.querySelector('.u-v3').value) || 0;
                 sum1 += v1; sum2 += v2; sum3 += v3;
-                detailList += `${name}: ${v1}t / ${v2}t / ${v3}t\n`;
+                detail += `${n}: ${v1}t / ${v2}t / ${v3}t\n`;
             });
 
-            const finalReport = `< ${date} ${market} 상권 보고 >
+            const reportText = `< ${date} ${market} 상권 보고 >
 
 1. 점유비
 - 총 방문업소: -개
-- 총 테이블 수: ${grandTotal}T
+- 총 테이블 수: ${totalT}T
 
-가. 무학: ${muhakTotal}T (${getP(muhakTotal, grandTotal)}%)
-- 좋은데이: ${mu1}T (${getP(mu1, grandTotal)}%)
-- 톡시리즈: ${mu3}T (${getP(mu3, grandTotal)}%)
-- 부산갈매기: ${mu2}T (${getP(mu2, grandTotal)}%)
-- 기타: ${mu4}T (${getP(mu4, grandTotal)}%)
+가. 무학: ${muhakT}T (${getP(muhakT, totalT)}%)
+- 좋은데이: ${mu1}T (${getP(mu1, totalT)}%)
+- 톡시리즈: ${mu2}T (${getP(mu2, totalT)}%)
+- 부산갈매기: ${mu3}T (${getP(mu3, totalT)}%)
+- 기타: ${mu4}T (${getP(mu4, totalT)}%)
 
-나. 하이트진로: ${hiteTotal}T (${getP(hiteTotal, grandTotal)}%)
-다. 대선주조: ${dsTotal}T (${getP(dsTotal, grandTotal)}%)
-라. 롯데: ${lotteTotal}T (${getP(lotteTotal, grandTotal)}%)
+나. 하이트진로: ${hiteT}T (${getP(hiteT, totalT)}%)
+- 참이슬: ${getV('t_isul')}T (${getP(getV('t_isul'), totalT)}%)
+- 진로: ${getV('t_jinro')}T (${getP(getV('t_jinro'), totalT)}%)
+- 기타: ${getV('t_hite_etc')}T (${getP(getV('t_hite_etc'), totalT)}%)
+
+다. 대선주조: ${dsT}T (${getP(dsT, totalT)}%)
+- 대선(C1 포함): ${getV('t_daesun')}T (${getP(getV('t_daesun'), totalT)}%)
+- 부산: ${getV('t_busan')}T (${getP(getV('t_busan'), totalT)}%)
+- 기타: ${getV('t_ds_etc')}T (${getP(getV('t_ds_etc'), totalT)}%)
+
+라. 롯데: ${lotteT}T (${getP(lotteT, totalT)}%)
+- 새로(살구 포함): ${getV('t_saero')}T (${getP(getV('t_saero'), totalT)}%)
+- 청하(별빛청하 포함): ${getV('t_chungha')}T (${getP(getV('t_chungha'), totalT)}%)
+- 기타: ${getV('t_lotte_etc')}T (${getP(getV('t_lotte_etc'), totalT)}%)
+
+마. 기타 주류회사: ${etcT}T (${getP(etcT, totalT)}%)
 
 2. 근무자 판촉 실정
 가. 근무인원
 
 - 총 전환: ${sum1}t(좋은데이) / ${sum2}t(부산갈매기) / ${sum3}t(톡톡)
-${detailList}
+${detail}
 3. 타사 활동
 - 하이트진로: 대판팀 2명 / 행사팀 2명
 - 대선주조: 대판팀 2명
@@ -151,8 +190,8 @@ ${detailList}
 4. 특이사항
 - ${memo}`;
 
-            navigator.clipboard.writeText(finalReport).then(() => {
-                alert("✅ 계산 완료 및 보고서가 복사되었습니다!");
+            navigator.clipboard.writeText(reportText).then(() => {
+                alert("✅ 계산 및 복사 완료!");
             });
         }
     </script>
