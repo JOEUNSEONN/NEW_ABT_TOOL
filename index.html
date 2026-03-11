@@ -3,166 +3,144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>좋은데이 판촉 관리 시스템</title>
+    <title>좋은데이 판촉 보고서 툴</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;800&display=swap');
-        body { font-family: 'Pretendard', sans-serif; background-color: #f8fafc; }
-        .glass-card { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); }
-        input { transition: all 0.2s; border-radius: 8px !important; }
-        input:focus { border-color: #2563eb !important; ring: 2px; ring-color: #dbeafe; outline: none; }
-        .brand-muhak { border-left: 4px solid #2563eb; }
-        .brand-hite { border-left: 4px solid #ef4444; }
-        .brand-daesun { border-left: 4px solid #10b981; }
-        .brand-lotte { border-left: 4px solid #f59e0b; }
+        body { font-family: 'Pretendard', sans-serif; background-color: #f1f5f9; }
+        .input-box { border: 1px solid #e2e8f0; border-radius: 8px; padding: 8px; text-align: center; font-size: 14px; }
+        .brand-card { background: white; border-radius: 16px; padding: 16px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
     </style>
 </head>
 <body class="pb-32">
 
     <nav class="sticky top-0 z-50 bg-blue-600 text-white p-4 shadow-lg flex justify-between items-center">
-        <h1 class="font-extrabold text-lg tracking-tight"><i class="fa-solid fa-chart-line mr-2"></i>GOODDAY REPORT</h1>
+        <h1 class="font-extrabold text-lg tracking-tight">GOODDAY REPORT</h1>
         <button onclick="location.reload()" class="text-blue-100 text-sm"><i class="fa-solid fa-rotate-right"></i> 초기화</button>
     </nav>
 
     <div class="max-w-md mx-auto p-4 space-y-6">
         
-        <div class="bg-white p-5 rounded-2xl shadow-sm space-y-3">
-            <div class="flex items-center gap-2 text-gray-400 mb-2">
-                <i class="fa-regular fa-calendar-check"></i>
-                <span class="text-xs font-bold uppercase">Basic Information</span>
-            </div>
-            <input type="text" id="reportDate" class="w-full p-3 bg-gray-50 border-none text-sm" placeholder="📅 00월 00일(목)">
-            <input type="text" id="marketName" class="w-full p-3 bg-gray-50 border-none text-sm" placeholder="📍 000 상권 (예: 서면, 남포동)">
+        <div class="brand-card space-y-3">
+            <input type="text" id="reportDate" class="w-full input-box bg-gray-50 border-none" placeholder="📅 00월 00일(목)">
+            <input type="text" id="marketName" class="w-full input-box bg-gray-50 border-none" placeholder="📍 상권명 입력">
         </div>
 
         <div class="space-y-4">
-            <h2 class="font-bold text-gray-700 px-1 flex items-center gap-2">
-                <span class="bg-blue-600 w-1.5 h-4 rounded-full"></span> 1. 주류별 점유비 (Table)
-            </h2>
-
-            <div class="bg-white p-5 rounded-2xl shadow-sm brand-muhak space-y-4">
-                <div class="flex justify-between items-center">
-                    <span class="font-bold text-blue-700">무학</span>
-                    <span class="text-[10px] bg-blue-50 text-blue-600 px-2 py-1 rounded-full font-bold">MUHAK</span>
-                </div>
-                <div class="grid grid-cols-2 gap-3 text-sm">
-                    <div class="space-y-1">
-                        <label class="text-gray-500 text-xs">좋은데이</label>
-                        <input type="number" id="t_good" class="w-full p-2 bg-gray-50 border-gray-100 text-center font-bold text-blue-600">
-                    </div>
-                    <div class="space-y-1">
-                        <label class="text-gray-500 text-xs">톡시리즈</label>
-                        <input type="number" id="t_tok" class="w-full p-2 bg-gray-50 border-gray-100 text-center">
-                    </div>
-                    <div class="space-y-1">
-                        <label class="text-gray-500 text-xs">부산갈매기</label>
-                        <input type="number" id="t_seagull" class="w-full p-2 bg-gray-50 border-gray-100 text-center font-bold text-blue-500">
-                    </div>
-                    <div class="space-y-1">
-                        <label class="text-gray-500 text-xs">기타(무학)</label>
-                        <input type="number" id="t_muhak_etc" class="w-full p-2 bg-gray-50 border-gray-100 text-center">
-                    </div>
+            <h2 class="font-bold text-gray-700 px-1 italic">1. 점유비 입력 (T)</h2>
+            <div class="brand-card border-l-4 border-blue-600">
+                <p class="font-bold text-blue-600 text-sm mb-3">무학</p>
+                <div class="grid grid-cols-2 gap-2">
+                    <input type="number" id="t_good" placeholder="좋은데이" class="input-box">
+                    <input type="number" id="t_tok" placeholder="톡시리즈" class="input-box">
+                    <input type="number" id="t_seagull" placeholder="부산갈매기" class="input-box font-bold">
+                    <input type="number" id="t_muhak_etc" placeholder="기타" class="input-box text-xs">
                 </div>
             </div>
-
-            <div class="grid grid-cols-1 gap-3">
-                <div class="bg-white p-4 rounded-xl shadow-sm brand-hite flex items-center justify-between">
-                    <span class="text-sm font-bold text-red-600">하이트진로</span>
-                    <div class="flex gap-2">
-                        <input type="number" id="t_isul" placeholder="이슬" class="w-16 p-2 bg-gray-50 text-xs text-center border-none">
-                        <input type="number" id="t_jinro" placeholder="진로" class="w-16 p-2 bg-gray-50 text-xs text-center border-none">
-                        <input type="number" id="t_hite_etc" placeholder="기타" class="w-16 p-2 bg-gray-50 text-xs text-center border-none">
-                    </div>
-                </div>
-                <div class="bg-white p-4 rounded-xl shadow-sm brand-daesun flex items-center justify-between">
-                    <span class="text-sm font-bold text-green-600">대선주조</span>
-                    <div class="flex gap-2">
-                        <input type="number" id="t_daesun" placeholder="대선" class="w-16 p-2 bg-gray-50 text-xs text-center border-none">
-                        <input type="number" id="t_busan" placeholder="부산" class="w-16 p-2 bg-gray-50 text-xs text-center border-none">
-                        <input type="number" id="t_ds_etc" placeholder="기타" class="w-16 p-2 bg-gray-50 text-xs text-center border-none">
-                    </div>
-                </div>
-                <div class="bg-white p-4 rounded-xl shadow-sm brand-lotte flex items-center justify-between">
-                    <span class="text-sm font-bold text-orange-600">롯데주류</span>
-                    <div class="flex gap-2">
-                        <input type="number" id="t_saero" placeholder="새로" class="w-16 p-2 bg-gray-50 text-xs text-center border-none">
-                        <input type="number" id="t_chungha" placeholder="청하" class="w-16 p-2 bg-gray-50 text-xs text-center border-none">
-                        <input type="number" id="t_lotte_etc" placeholder="기타" class="w-16 p-2 bg-gray-50 text-xs text-center border-none">
-                    </div>
+            <div class="brand-card border-l-4 border-red-500">
+                <p class="font-bold text-red-500 text-sm mb-3">타사 (이슬/진로/대선/부산/새로/청하)</p>
+                <div class="grid grid-cols-3 gap-2">
+                    <input type="number" id="t_isul" placeholder="이슬" class="input-box">
+                    <input type="number" id="t_jinro" placeholder="진로" class="input-box">
+                    <input type="number" id="t_hite_etc" placeholder="기타" class="input-box">
+                    <input type="number" id="t_daesun" placeholder="대선" class="input-box">
+                    <input type="number" id="t_busan" placeholder="부산" class="input-box">
+                    <input type="number" id="t_saero" placeholder="새로" class="input-box">
                 </div>
             </div>
         </div>
 
         <div class="space-y-4">
-            <h2 class="font-bold text-gray-700 px-1 flex items-center gap-2">
-                <span class="bg-blue-600 w-1.5 h-4 rounded-full"></span> 2. 판촉 실정
-            </h2>
+            <div class="flex justify-between items-center px-1">
+                <h2 class="font-bold text-gray-700 italic">2. 판촉 실정</h2>
+                <button onclick="addUser()" class="bg-gray-800 text-white text-xs px-3 py-2 rounded-lg">+ 인원 추가하기</button>
+            </div>
             
-            <div class="bg-white p-5 rounded-2xl shadow-sm space-y-4">
-                <div class="flex items-center gap-2 border-b pb-2">
-                    <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-xs">홍</div>
-                    <span class="font-bold text-gray-700">홍길동 요원</span>
+            <div id="userList" class="space-y-4">
                 </div>
-                <div class="grid grid-cols-1 gap-4">
-                    <div class="flex justify-between items-center text-sm">
-                        <span>갈매기 판매(병)</span>
-                        <input type="number" id="s1_sales" class="w-24 p-2 bg-gray-50 border-none text-right font-bold text-blue-600">
-                    </div>
-                    <div class="space-y-2">
-                        <p class="text-[10px] font-bold text-gray-400">전환 (좋 / 갈 / 톡)</p>
-                        <div class="flex gap-2">
-                            <input type="number" id="s1_t1" class="flex-1 p-2 bg-blue-50 border-none text-center text-xs">
-                            <input type="number" id="s1_t2" class="flex-1 p-2 bg-blue-50 border-none text-center text-xs">
-                            <input type="number" id="s1_t3" class="flex-1 p-2 bg-blue-50 border-none text-center text-xs">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-white p-5 rounded-2xl shadow-sm space-y-4">
-                <div class="flex items-center gap-2 border-b pb-2">
-                    <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-xs">임</div>
-                    <span class="font-bold text-gray-700">임꺽정 요원</span>
-                </div>
-                <div class="grid grid-cols-1 gap-4">
-                    <div class="flex justify-between items-center text-sm">
-                        <span>갈매기 판매(병)</span>
-                        <input type="number" id="s2_sales" class="w-24 p-2 bg-gray-50 border-none text-right font-bold text-blue-600">
-                    </div>
-                    <div class="space-y-2">
-                        <p class="text-[10px] font-bold text-gray-400">전환 (좋 / 갈 / 톡)</p>
-                        <div class="flex gap-2">
-                            <input type="number" id="s2_t1" class="flex-1 p-2 bg-blue-50 border-none text-center text-xs">
-                            <input type="number" id="s2_t2" class="flex-1 p-2 bg-blue-50 border-none text-center text-xs">
-                            <input type="number" id="s2_t3" class="flex-1 p-2 bg-blue-50 border-none text-center text-xs">
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
-
     </div>
 
-    <div class="fixed bottom-0 left-0 right-0 p-4 bg-white/80 backdrop-blur-md border-t border-gray-100 flex gap-2 max-w-md mx-auto z-[100]">
-        <button onclick="copyReport()" class="flex-[3] bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-xl font-bold shadow-lg shadow-blue-200 transition-all active:scale-95">
+    <div class="fixed bottom-0 left-0 right-0 p-4 bg-white border-t flex gap-2 max-w-md mx-auto z-50">
+        <button onclick="copyReport()" class="flex-1 bg-blue-600 text-white py-4 rounded-xl font-bold shadow-lg active:scale-95 transition-all">
             <i class="fa-regular fa-copy mr-2"></i> 보고서 복사하기
         </button>
     </div>
 
     <script>
-        function getV(id) { return Number(document.getElementById(id).value) || 0; }
+        let userCount = 0;
+
+        // 인원 추가 함수
+        function addUser() {
+            userCount++;
+            const div = document.createElement('div');
+            div.id = `user_${userCount}`;
+            div.className = "brand-card space-y-3 relative";
+            div.innerHTML = `
+                <button onclick="removeUser(${userCount})" class="absolute top-2 right-2 text-red-400 text-xs">✖</button>
+                <div class="flex gap-2">
+                    <input type="text" placeholder="이름" class="u-name input-box w-1/3 bg-blue-50 font-bold border-none">
+                    <input type="number" placeholder="갈매기 판매(병)" class="u-sales input-box w-2/3 border-blue-100">
+                </div>
+                <div class="grid grid-cols-3 gap-2">
+                    <div class="text-[10px] text-center text-gray-400">좋은데이(t)</div>
+                    <div class="text-[10px] text-center text-gray-400">갈매기(t)</div>
+                    <div class="text-[10px] text-center text-gray-400">톡톡(t)</div>
+                    <input type="number" placeholder="전환" class="u-t1 input-box bg-gray-50">
+                    <input type="number" placeholder="전환" class="u-t2 input-box bg-gray-50">
+                    <input type="number" placeholder="전환" class="u-t3 input-box bg-gray-50">
+                    <input type="number" placeholder="추가" class="u-a1 input-box">
+                    <input type="number" placeholder="추가" class="u-a2 input-box">
+                    <input type="number" placeholder="추가" class="u-a3 input-box">
+                </div>
+            `;
+            document.getElementById('userList').appendChild(div);
+        }
+
+        function removeUser(id) {
+            document.getElementById(`user_${id}`).remove();
+        }
+
+        // 초기 인원 2명 기본 생성
+        addUser(); addUser();
+
+        function getV(id) { return Number(document.getElementById(id)?.value) || 0; }
         function getP(v, total) { return total === 0 ? "0.0" : ((v/total)*100).toFixed(1); }
 
         function copyReport() {
             const date = document.getElementById('reportDate').value || "00월 00일(목)";
             const market = document.getElementById('marketName').value || "000";
             
+            // 점유비 계산
             const muhakT = getV('t_good') + getV('t_tok') + getV('t_seagull') + getV('t_muhak_etc');
             const hiteT = getV('t_isul') + getV('t_jinro') + getV('t_hite_etc');
-            const daesunT = getV('t_daesun') + getV('t_busan') + getV('t_ds_etc');
-            const lotteT = getV('t_saero') + getV('t_chungha') + getV('t_lotte_etc');
+            const daesunT = getV('t_daesun') + getV('t_busan');
+            const lotteT = getV('t_saero');
             const totalT = muhakT + hiteT + daesunT + lotteT;
+
+            // 판촉 실정 합계 계산
+            let totalSales = 0, totalT1 = 0, totalT2 = 0, totalT3 = 0, totalA1 = 0, totalA2 = 0, totalA3 = 0;
+            let userReport = "";
+            let userDetailT = "";
+            let userDetailA = "";
+
+            const users = document.querySelectorAll('#userList > div');
+            users.forEach(u => {
+                const name = u.querySelector('.u-name').value || "익명";
+                const s = Number(u.querySelector('.u-sales').value) || 0;
+                const t1 = Number(u.querySelector('.u-t1').value) || 0;
+                const t2 = Number(u.querySelector('.u-t2').value) || 0;
+                const t3 = Number(u.querySelector('.u-t3').value) || 0;
+                const a1 = Number(u.querySelector('.u-a1').value) || 0;
+                const a2 = Number(u.querySelector('.u-a2').value) || 0;
+                const a3 = Number(u.querySelector('.u-a3').value) || 0;
+
+                totalSales += s; totalT1 += t1; totalT2 += t2; totalT3 += t3; totalA1 += a1; totalA2 += a2; totalA3 += a3;
+                userReport += `${name} : ${s}\n`;
+                userDetailT += `${name}: ${t1}t / ${t2}t / ${t3}t\n`;
+                userDetailA += `${name}: ${a1}t / ${a2}t / ${a3}t\n`;
+            });
 
             const report = `< ${date} ${market} 상권 보고 >
 
@@ -179,39 +157,28 @@
 나. 하이트진로: ${hiteT}T (${getP(hiteT, totalT)}%)
 - 참이슬: ${getV('t_isul')}T (${getP(getV('t_isul'), totalT)}%)
 - 진로: ${getV('t_jinro')}T (${getP(getV('t_jinro'), totalT)}%)
-- 기타: ${getV('t_hite_etc')}T (${getP(getV('t_hite_etc'), totalT)}%)
 
 다. 대선주조: ${daesunT}T (${getP(daesunT, totalT)}%)
-- 대선(C1 포함): ${getV('t_daesun')}T (${getP(getV('t_daesun'), totalT)}%)
-- 부산: ${getV('t_busan')}T (${getP(getV('t_busan'), totalT)}%)
-- 기타: ${getV('t_ds_etc')}T (${getP(getV('t_ds_etc'), totalT)}%)
-
 라. 롯데: ${lotteT}T (${getP(lotteT, totalT)}%)
-- 새로(살구 포함): ${getV('t_saero')}T (${getP(getV('t_saero'), totalT)}%)
-- 청하(별빛청하 포함): ${getV('t_chungha')}T (${getP(getV('t_chungha'), totalT)}%)
-- 기타: ${getV('t_lotte_etc')}T (${getP(getV('t_lotte_etc'), totalT)}%)
 
 2. 근무자 판촉 실정
 가. 근무인원
 
 - 부산 갈매기 총 판매 병 수
-홍길동 : ${getV('s1_sales')}
-임꺽정 : ${getV('s2_sales')}
-
-- 총 전환: ${getV('s1_t1')+getV('s2_t1')}t(좋은데이) / ${getV('s1_t2')+getV('s2_t2')}t(부산갈매기) / ${getV('s1_t3')+getV('s2_t3')}t(톡톡)
-홍길동: ${getV('s1_t1')}t / ${getV('s1_t2')}t / ${getV('s1_t3')}t
-임꺽정: ${getV('s2_t1')}t / ${getV('s2_t2')}t / ${getV('s2_t3')}t
-
+${userReport}
+- 총 전환: ${totalT1}t(좋은데이) / ${totalT2}t(부산갈매기) / ${totalT3}t(톡톡)
+${userDetailT}
+- 총 추가주문: ${totalA1}t(좋은데이) / ${totalA2}t(부산갈매기) / ${totalA3}t(톡톡)
+${userDetailA}
 3. 타사 활동
 - 하이트진로: 대판팀 2명 / 행사팀 2명
 - 대선주조: 대판팀 2명
-- 롯데주류: 없음
 
 4. 특이사항
 - 없음`;
 
             navigator.clipboard.writeText(report).then(() => {
-                alert("✅ 보고서가 복사되었습니다!");
+                alert("✅ 합계 계산 및 보고서 복사 완료!");
             });
         }
     </script>
