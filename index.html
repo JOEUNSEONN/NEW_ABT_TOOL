@@ -3,182 +3,156 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>좋은데이 판촉 보고서 툴</title>
+    <title>좋은데이 판촉 보고서</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;800&display=swap');
-        body { font-family: 'Pretendard', sans-serif; background-color: #f1f5f9; }
-        .input-box { border: 1px solid #e2e8f0; border-radius: 8px; padding: 8px; text-align: center; font-size: 14px; }
-        .brand-card { background: white; border-radius: 16px; padding: 16px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        body { font-family: 'Pretendard', sans-serif; background-color: #f8fafc; }
+        .input-box { border: 1px solid #e2e8f0; border-radius: 6px; padding: 6px; text-align: center; width: 100%; font-size: 13px; }
+        .card { background: white; border-radius: 12px; padding: 15px; shadow: sm; }
+        .grid-header { font-size: 11px; color: #64748b; text-align: center; font-weight: bold; }
     </style>
 </head>
-<body class="pb-32">
+<body class="pb-32 px-4 pt-4">
 
-    <nav class="sticky top-0 z-50 bg-blue-600 text-white p-4 shadow-lg flex justify-between items-center">
-        <h1 class="font-extrabold text-lg tracking-tight">GOODDAY REPORT</h1>
-        <button onclick="location.reload()" class="text-blue-100 text-sm"><i class="fa-solid fa-rotate-right"></i> 초기화</button>
-    </nav>
-
-    <div class="max-w-md mx-auto p-4 space-y-6">
-        
-        <div class="brand-card space-y-3">
-            <input type="text" id="reportDate" class="w-full input-box bg-gray-50 border-none" placeholder="📅 00월 00일(목)">
-            <input type="text" id="marketName" class="w-full input-box bg-gray-50 border-none" placeholder="📍 상권명 입력">
+    <div class="max-w-md mx-auto space-y-6">
+        <div class="card space-y-2">
+            <input type="text" id="reportDate" class="input-box bg-gray-50 border-none font-bold" placeholder="📅 00월 00일(목)">
+            <input type="text" id="marketName" class="input-box bg-gray-50 border-none font-bold" placeholder="📍 상권명 입력">
         </div>
 
-        <div class="space-y-4">
-            <h2 class="font-bold text-gray-700 px-1 italic">1. 점유비 입력 (T)</h2>
-            <div class="brand-card border-l-4 border-blue-600">
-                <p class="font-bold text-blue-600 text-sm mb-3">무학</p>
-                <div class="grid grid-cols-2 gap-2">
-                    <input type="number" id="t_good" placeholder="좋은데이" class="input-box">
-                    <input type="number" id="t_tok" placeholder="톡시리즈" class="input-box">
-                    <input type="number" id="t_seagull" placeholder="부산갈매기" class="input-box font-bold">
-                    <input type="number" id="t_muhak_etc" placeholder="기타" class="input-box text-xs">
-                </div>
+        <div class="card space-y-4">
+            <h2 class="font-bold text-blue-600 border-b pb-2 italic">1. 점유비 입력 (T)</h2>
+            <div class="grid grid-cols-2 gap-3">
+                <div><label class="text-[10px] ml-1">좋은데이</label><input type="number" id="t_good" class="input-box"></div>
+                <div><label class="text-[10px] ml-1">부산갈매기</label><input type="number" id="t_seagull" class="input-box border-blue-300"></div>
+                <div><label class="text-[10px] ml-1">톡시리즈</label><input type="number" id="t_tok" class="input-box"></div>
+                <div><label class="text-[10px] ml-1">기타(무학)</label><input type="number" id="t_muhak_etc" class="input-box"></div>
             </div>
-            <div class="brand-card border-l-4 border-red-500">
-                <p class="font-bold text-red-500 text-sm mb-3">타사 (이슬/진로/대선/부산/새로/청하)</p>
-                <div class="grid grid-cols-3 gap-2">
-                    <input type="number" id="t_isul" placeholder="이슬" class="input-box">
-                    <input type="number" id="t_jinro" placeholder="진로" class="input-box">
-                    <input type="number" id="t_hite_etc" placeholder="기타" class="input-box">
-                    <input type="number" id="t_daesun" placeholder="대선" class="input-box">
-                    <input type="number" id="t_busan" placeholder="부산" class="input-box">
-                    <input type="number" id="t_saero" placeholder="새로" class="input-box">
-                </div>
+            <div class="grid grid-cols-3 gap-2 pt-2 border-t">
+                <div><label class="text-[10px] ml-1 text-red-400 font-bold">참이슬</label><input type="number" id="t_isul" class="input-box"></div>
+                <div><label class="text-[10px] ml-1 text-red-400 font-bold">진로</label><input type="number" id="t_jinro" class="input-box"></div>
+                <div><label class="text-[10px] ml-1 text-green-500 font-bold">대선/부산</label><input type="number" id="t_daesun" class="input-box"></div>
+                <div><label class="text-[10px] ml-1 text-orange-400 font-bold">새로</label><input type="number" id="t_saero" class="input-box"></div>
+                <div><label class="text-[10px] ml-1 text-orange-400 font-bold">청하</label><input type="number" id="t_chungha" class="input-box"></div>
             </div>
         </div>
 
-        <div class="space-y-4">
-            <div class="flex justify-between items-center px-1">
-                <h2 class="font-bold text-gray-700 italic">2. 판촉 실정</h2>
-                <button onclick="addUser()" class="bg-gray-800 text-white text-xs px-3 py-2 rounded-lg">+ 인원 추가하기</button>
+        <div class="card space-y-4">
+            <div class="flex justify-between items-end">
+                <h2 class="font-bold text-gray-800 italic">2. 전환 및 추가주문</h2>
+                <button onclick="addUserRow()" class="bg-black text-white text-[11px] px-3 py-1.5 rounded-md font-bold transition-all active:scale-95">인원 추가하기</button>
+            </div>
+
+            <div class="grid grid-cols-10 gap-1 px-1">
+                <div class="col-span-3 grid-header">이름</div>
+                <div class="col-span-2 grid-header">좋은데이</div>
+                <div class="col-span-2 grid-header">갈매기</div>
+                <div class="col-span-2 grid-header">톡톡</div>
+                <div class="col-span-1"></div>
             </div>
             
-            <div id="userList" class="space-y-4">
+            <div id="userRowContainer" class="space-y-2">
                 </div>
+        </div>
+
+        <div class="card">
+            <h2 class="font-bold text-gray-800 mb-2 italic text-sm">3. 특이사항</h2>
+            <textarea id="memo" class="w-full input-box text-left h-20" placeholder="없음"></textarea>
         </div>
     </div>
 
-    <div class="fixed bottom-0 left-0 right-0 p-4 bg-white border-t flex gap-2 max-w-md mx-auto z-50">
-        <button onclick="copyReport()" class="flex-1 bg-blue-600 text-white py-4 rounded-xl font-bold shadow-lg active:scale-95 transition-all">
-            <i class="fa-regular fa-copy mr-2"></i> 보고서 복사하기
+    <div class="fixed bottom-0 left-0 right-0 p-4 bg-white/90 backdrop-blur-sm border-t flex gap-2 max-w-md mx-auto z-50">
+        <button onclick="copyFullReport()" class="flex-1 bg-blue-600 text-white py-4 rounded-xl font-bold shadow-lg active:scale-95 transition-all">
+            보고서 복사하기
         </button>
     </div>
 
     <script>
-        let userCount = 0;
+        let rowIdx = 0;
 
-        // 인원 추가 함수
-        function addUser() {
-            userCount++;
-            const div = document.createElement('div');
-            div.id = `user_${userCount}`;
-            div.className = "brand-card space-y-3 relative";
-            div.innerHTML = `
-                <button onclick="removeUser(${userCount})" class="absolute top-2 right-2 text-red-400 text-xs">✖</button>
-                <div class="flex gap-2">
-                    <input type="text" placeholder="이름" class="u-name input-box w-1/3 bg-blue-50 font-bold border-none">
-                    <input type="number" placeholder="갈매기 판매(병)" class="u-sales input-box w-2/3 border-blue-100">
-                </div>
-                <div class="grid grid-cols-3 gap-2">
-                    <div class="text-[10px] text-center text-gray-400">좋은데이(t)</div>
-                    <div class="text-[10px] text-center text-gray-400">갈매기(t)</div>
-                    <div class="text-[10px] text-center text-gray-400">톡톡(t)</div>
-                    <input type="number" placeholder="전환" class="u-t1 input-box bg-gray-50">
-                    <input type="number" placeholder="전환" class="u-t2 input-box bg-gray-50">
-                    <input type="number" placeholder="전환" class="u-t3 input-box bg-gray-50">
-                    <input type="number" placeholder="추가" class="u-a1 input-box">
-                    <input type="number" placeholder="추가" class="u-a2 input-box">
-                    <input type="number" placeholder="추가" class="u-a3 input-box">
-                </div>
+        function addUserRow() {
+            rowIdx++;
+            const container = document.getElementById('userRowContainer');
+            const row = document.createElement('div');
+            row.id = `row_${rowIdx}`;
+            row.className = "grid grid-cols-10 gap-1 items-center pb-2 border-b border-gray-50 last:border-0";
+            row.innerHTML = `
+                <div class="col-span-3"><input type="text" placeholder="이름" class="u-name input-box bg-blue-50 border-none font-bold"></div>
+                <div class="col-span-2"><input type="number" placeholder="0" class="u-v1 input-box"></div>
+                <div class="col-span-2"><input type="number" placeholder="0" class="u-v2 input-box border-blue-200"></div>
+                <div class="col-span-2"><input type="number" placeholder="0" class="u-v3 input-box"></div>
+                <div class="col-span-1 text-center"><button onclick="removeRow(${rowIdx})" class="text-red-400 text-xs">✕</button></div>
             `;
-            document.getElementById('userList').appendChild(div);
+            container.appendChild(row);
         }
 
-        function removeUser(id) {
-            document.getElementById(`user_${id}`).remove();
-        }
+        function removeRow(id) { document.getElementById(`row_${id}`).remove(); }
 
-        // 초기 인원 2명 기본 생성
-        addUser(); addUser();
+        // 기본 2줄 생성
+        addUserRow(); addUserRow();
 
         function getV(id) { return Number(document.getElementById(id)?.value) || 0; }
         function getP(v, total) { return total === 0 ? "0.0" : ((v/total)*100).toFixed(1); }
 
-        function copyReport() {
+        function copyFullReport() {
             const date = document.getElementById('reportDate').value || "00월 00일(목)";
             const market = document.getElementById('marketName').value || "000";
+            const memo = document.getElementById('memo').value || "없음";
             
-            // 점유비 계산
-            const muhakT = getV('t_good') + getV('t_tok') + getV('t_seagull') + getV('t_muhak_etc');
-            const hiteT = getV('t_isul') + getV('t_jinro') + getV('t_hite_etc');
-            const daesunT = getV('t_daesun') + getV('t_busan');
-            const lotteT = getV('t_saero');
-            const totalT = muhakT + hiteT + daesunT + lotteT;
+            // 1. 점유비 계산
+            const mu1 = getV('t_good'), mu2 = getV('t_seagull'), mu3 = getV('t_tok'), mu4 = getV('t_muhak_etc');
+            const muhakTotal = mu1 + mu2 + mu3 + mu4;
+            const hiteTotal = getV('t_isul') + getV('t_jinro');
+            const dsTotal = getV('t_daesun');
+            const lotteTotal = getV('t_saero') + getV('t_chungha');
+            const grandTotal = muhakTotal + hiteTotal + dsTotal + lotteTotal;
 
-            // 판촉 실정 합계 계산
-            let totalSales = 0, totalT1 = 0, totalT2 = 0, totalT3 = 0, totalA1 = 0, totalA2 = 0, totalA3 = 0;
-            let userReport = "";
-            let userDetailT = "";
-            let userDetailA = "";
-
-            const users = document.querySelectorAll('#userList > div');
-            users.forEach(u => {
-                const name = u.querySelector('.u-name').value || "익명";
-                const s = Number(u.querySelector('.u-sales').value) || 0;
-                const t1 = Number(u.querySelector('.u-t1').value) || 0;
-                const t2 = Number(u.querySelector('.u-t2').value) || 0;
-                const t3 = Number(u.querySelector('.u-t3').value) || 0;
-                const a1 = Number(u.querySelector('.u-a1').value) || 0;
-                const a2 = Number(u.querySelector('.u-a2').value) || 0;
-                const a3 = Number(u.querySelector('.u-a3').value) || 0;
-
-                totalSales += s; totalT1 += t1; totalT2 += t2; totalT3 += t3; totalA1 += a1; totalA2 += a2; totalA3 += a3;
-                userReport += `${name} : ${s}\n`;
-                userDetailT += `${name}: ${t1}t / ${t2}t / ${t3}t\n`;
-                userDetailA += `${name}: ${a1}t / ${a2}t / ${a3}t\n`;
+            // 2. 판촉 실정 계산
+            let sum1 = 0, sum2 = 0, sum3 = 0;
+            let detailList = "";
+            const rows = document.querySelectorAll('#userRowContainer > div');
+            rows.forEach(r => {
+                const name = r.querySelector('.u-name').value || "익명";
+                const v1 = Number(r.querySelector('.u-v1').value) || 0;
+                const v2 = Number(r.querySelector('.u-v2').value) || 0;
+                const v3 = Number(r.querySelector('.u-v3').value) || 0;
+                sum1 += v1; sum2 += v2; sum3 += v3;
+                detailList += `${name}: ${v1}t / ${v2}t / ${v3}t\n`;
             });
 
-            const report = `< ${date} ${market} 상권 보고 >
+            const finalReport = `< ${date} ${market} 상권 보고 >
 
 1. 점유비
 - 총 방문업소: -개
-- 총 테이블 수: ${totalT}T
+- 총 테이블 수: ${grandTotal}T
 
-가. 무학: ${muhakT}T (${getP(muhakT, totalT)}%)
-- 좋은데이: ${getV('t_good')}T (${getP(getV('t_good'), totalT)}%)
-- 톡시리즈: ${getV('t_tok')}T (${getP(getV('t_tok'), totalT)}%)
-- 부산갈매기: ${getV('t_seagull')}T (${getP(getV('t_seagull'), totalT)}%)
-- 기타: ${getV('t_muhak_etc')}T (${getP(getV('t_muhak_etc'), totalT)}%)
+가. 무학: ${muhakTotal}T (${getP(muhakTotal, grandTotal)}%)
+- 좋은데이: ${mu1}T (${getP(mu1, grandTotal)}%)
+- 톡시리즈: ${mu3}T (${getP(mu3, grandTotal)}%)
+- 부산갈매기: ${mu2}T (${getP(mu2, grandTotal)}%)
+- 기타: ${mu4}T (${getP(mu4, grandTotal)}%)
 
-나. 하이트진로: ${hiteT}T (${getP(hiteT, totalT)}%)
-- 참이슬: ${getV('t_isul')}T (${getP(getV('t_isul'), totalT)}%)
-- 진로: ${getV('t_jinro')}T (${getP(getV('t_jinro'), totalT)}%)
-
-다. 대선주조: ${daesunT}T (${getP(daesunT, totalT)}%)
-라. 롯데: ${lotteT}T (${getP(lotteT, totalT)}%)
+나. 하이트진로: ${hiteTotal}T (${getP(hiteTotal, grandTotal)}%)
+다. 대선주조: ${dsTotal}T (${getP(dsTotal, grandTotal)}%)
+라. 롯데: ${lotteTotal}T (${getP(lotteTotal, grandTotal)}%)
 
 2. 근무자 판촉 실정
 가. 근무인원
 
-- 부산 갈매기 총 판매 병 수
-${userReport}
-- 총 전환: ${totalT1}t(좋은데이) / ${totalT2}t(부산갈매기) / ${totalT3}t(톡톡)
-${userDetailT}
-- 총 추가주문: ${totalA1}t(좋은데이) / ${totalA2}t(부산갈매기) / ${totalA3}t(톡톡)
-${userDetailA}
+- 총 전환: ${sum1}t(좋은데이) / ${sum2}t(부산갈매기) / ${sum3}t(톡톡)
+${detailList}
 3. 타사 활동
 - 하이트진로: 대판팀 2명 / 행사팀 2명
 - 대선주조: 대판팀 2명
+- 롯데주류: 없음
 
 4. 특이사항
-- 없음`;
+- ${memo}`;
 
-            navigator.clipboard.writeText(report).then(() => {
-                alert("✅ 합계 계산 및 보고서 복사 완료!");
+            navigator.clipboard.writeText(finalReport).then(() => {
+                alert("✅ 계산 완료 및 보고서가 복사되었습니다!");
             });
         }
     </script>
